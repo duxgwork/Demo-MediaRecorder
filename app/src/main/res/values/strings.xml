@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">录音机</string>
+
+    <string name="click_pass">点击跳过</string>
+    <string name="record_start">开始录音</string>
+    <string name="record_finish">录音完成</string>
+    <string name="recording">正在录音...</string>
+    <string name="recording_warn">以下为录音文件 【长按文件可以删除】</string>
+
+
+</resources>

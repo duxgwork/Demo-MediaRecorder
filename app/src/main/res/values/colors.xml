@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- 通用色调 -->
+    <color name="color_transparent">#00FFFFFF</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_black">#000000</color>
+    <color name="color_blue">#4F97EF</color>
+    <color name="color_grey">#999999</color>
+
+    <!-- 背景色调bg -->
+    <color name="color_bg_01_ink_blue">#3D4753</color> <!-- 通用标题背景色 -->
+    <color name="color_bg_02_pure_white">@color/color_white</color> <!-- 首页列表背景、底部菜单栏、子频道标题栏背景 -->
+    <color name="color_bg_03_light_grey">#F4F4F4</color> <!-- 版块区分间隙、昨日榜单背景、被评论帖子背景 -->
+    <color name="color_bg_04_light_grey">#F0F0F0</color> <!-- 搜索/评论输入栏背景 -->
+    <color name="color_bg_05_blue">@color/color_blue</color> <!-- 按钮背景、添加品种分类标题背景、我方对话框背景 -->
+    <color name="color_bg_06_light_yellow">#FFFBD2</color> <!-- 温馨提示背景 -->
+    <color name="color_bg_07_light_ink_blue">#768290</color> <!-- 个人资料资产显示背景 -->
+    <color name="color_bg_08_white_trans90">#E6FFFFFF</color> <!-- 用于底部浮动布局，订单详情页，带部分透明效果 -->
+    <color name="color_bg_myblack">#FF3D4753</color> <!-- 个人中心头部背景色-->
+
+    <!-- 分割线色调divide -->
+    <color name="color_divide_01_grey">#CCCCCC</color> <!-- 通用列表分隔线 -->
+    <color name="color_divide_02_light_grey">#E5E5E5</color> <!-- 个人中心功能入口分隔线、价格筛选分隔线 -->
+    <color name="color_divide_03_blue_grey">#939CA7</color> <!-- 账户详情分隔线 -->
+
+    <!-- 文字色调text -->
+    <color name="color_text_01_pure_white">@color/color_white</color> <!-- 按钮文字、通用标题文字 -->
+    <color name="color_text_02_grey">#BBBBBB</color> <!-- 搜索栏/评论栏内占位文字 -->
+    <color name="color_text_03_dark_grey">@color/color_grey</color> <!-- 提示性文字、辅助文字、指数/价格不变文字 -->
+    <color name="color_text_04_dark_black">#666666</color> <!-- 标签未选中文字 -->
+    <color name="color_text_05_black">#333333</color> <!-- 文章标题、正文等主要文字 -->
+    <color name="color_text_06_blue">@color/color_blue</color> <!-- 成交量数值文字、价格筛选、可交互文字、二级筛选文字 -->
+    <color name="color_text_07_red">#EE4E4E</color> <!-- 热推文章标题、金额、指数/价格上涨等文字 -->
+    <color name="color_text_08_green">#2C9A00</color> <!-- 指数/价格下跌文字 -->
+
+    <!-- 图标色调icon -->
+    <color name="color_icon_01_pure_whit">@color/color_white</color> <!-- 颜色背景上的图标、深色标题栏上的常规图标 -->
+    <color name="color_icon_02_dark_grey">#7A7B7F</color> <!-- 首页底部菜单栏未选中图标 -->
+    <color name="color_icon_03_blue">@color/color_blue</color> <!-- 首页底部菜单栏选中图标 -->
+    <color name="color_icon_04_grey">@color/color_grey</color> <!-- 提示图标，例：阅读量、评论量、时间图标 -->
+
+    <!--其他色调 -->
+    <color name="green">#43c117</color>
+    <color name="white_70">#ADFFFFFF</color>
+    <color name="grey_trans">#99474747</color>
+    <color name="image_overlay">#20000000</color>
+    <color name="image_overlay2">#80000000</color>
+    <color name="province_line_border">#D0D0D0</color>
+    <color name="feedback_blue">#FF4F97EF</color>
+    <color name="color_dfe4e9">#dfe4e9</color>
+
+</resources>

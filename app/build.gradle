@@ -1,0 +1,127 @@
+apply plugin: 'com.android.application'
+
+Properties properties = new Properties()
+File propFile = project.rootProject.file('release.properties')
+if (propFile.exists()) {
+    properties.load(propFile.newDataInputStream())
+}
+
+android {
+    compileSdkVersion VERSION_COMPILE_SDK
+    buildToolsVersion VERSION_BUILD_TOOLS
+
+    defaultConfig {// 默认配置项
+        minSdkVersion VERSION_MIN_SDK
+        targetSdkVersion VERSION_TARGET_SDK
+        versionCode 1
+        versionName "1.0"
+        //所有的flavors都必须属于同一个风格，多渠道打包才能完成编译
+        flavorDimensions "versionCode"
+
+        manifestPlaceholders = [
+                APP_ICON        : "@mipmap/ic_launcher"
+        ]
+
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a"
+        }
+
+        // Enabling multidex support.
+        multiDexEnabled true
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            res.srcDirs = ["src/main/res"]
+        }
+    }
+
+    compileOptions { // Java 的版本配置
+        //配置使用JDK1.8（8），比如需要使用Lambda特性时，那么就可以在这里进行JDK版本的配置
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    //设置打包文件名称
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "SoundRecorder_v${variant.versionName}_${variant.name}_${variant.versionCode}.apk"
+        }
+    }
+
+    lintOptions { //编译的 lint 开关，程序在buid的时候，会执行lint检查，有任何的错误或者警告提示，都会终止构建，我们可以将其关掉。
+        //build release 版本 时 开启lint 检测
+        checkReleaseBuilds true
+        //lint 遇到 error 时继续 构建
+        abortOnError false
+    }
+
+    //签名
+    signingConfigs {
+        release {
+            storeFile file('../kevin.keystore')
+            storePassword properties.getProperty("RELEASE_STORE_PASSWORD")
+            keyAlias properties.getProperty("RELEASE_KEY_ALIAS")
+            keyPassword properties.getProperty("RELEASE_KEY_PASSWORD")
+        }
+    }
+
+    buildTypes {// 编译配置，release或debug版本的内容
+        debug {
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            //混淆
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            //签名
+//            signingConfig signingConfigs.release
+        }
+
+        release {
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            //混淆
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //签名
+            signingConfig signingConfigs.release
+        }
+    }
+
+    //批量打包的配置
+    productFlavors { //产品发布的一些东西，比如渠道、包名等
+        myapp {} //应用宝
+        hicloud {} //华为
+        oppo {} //oppo
+        vivo {} //vivo
+        xiaomi {} //小米
+    }
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs' //this way we can find the .aar file in libs folder
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation anrdoid_depends.appcompat_v7
+    implementation anrdoid_depends.constraint_layout
+    implementation anrdoid_depends.recyclerview_v7
+    implementation third_depends.permission
+    implementation third_depends.material_dialogs
+
+    implementation project(':lib_autolayout')
+    implementation project(':lib_base')
+    implementation project(':lib_common')
+    implementation project(':lib_recorder')
+}
