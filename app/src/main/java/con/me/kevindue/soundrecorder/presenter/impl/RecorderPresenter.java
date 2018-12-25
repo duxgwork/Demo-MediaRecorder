@@ -124,8 +124,7 @@ public class RecorderPresenter implements IRecorderPresenter {
      */
     @Override
     public void deleteRecording(String filePath) {
-        RecordFileUtil.deleteRecordingFile(filePath);
-        if (recordingView != null) {
+        if (RecordFileUtil.deleteRecordingFile(filePath) && recordingView != null) {
             recordingView.loadRecordingList(getRecordingList());
         }
     }

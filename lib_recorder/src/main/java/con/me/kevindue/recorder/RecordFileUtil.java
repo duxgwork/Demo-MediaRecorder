@@ -11,27 +11,27 @@ public class RecordFileUtil {
     private static final String SUFFIX = ".amr"; //文件后缀
 
     public static File getRecordingFile() {
-        String path;
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
                 || !Environment.isExternalStorageRemovable()) {
-            path = Environment.getExternalStorageDirectory().getAbsolutePath();
-        } else {
-            path = Environment.getDataDirectory().getAbsolutePath();
+            return new File(Environment.getExternalStorageDirectory().getAbsolutePath(), RECORD_FILE);
         }
-        return new File(path, RECORD_FILE);
+        return null;
     }
 
     public static String getCurrentRecordingPath() {
         File recordingDir = getRecordingFile();
-        if (!recordingDir.exists() || !recordingDir.isDirectory()) {
-            recordingDir.mkdirs();
+        if (recordingDir != null){
+            if (!recordingDir.exists() || !recordingDir.isDirectory()) {
+                recordingDir.mkdirs();
+            }
+            return new File(recordingDir, PREFIX + System.currentTimeMillis() + SUFFIX).getAbsolutePath();
         }
-        return new File(recordingDir, PREFIX + System.currentTimeMillis() + SUFFIX).getAbsolutePath();
+        return null;
     }
 
     public static File[] getAllRecordingFiles() {
         File recordingDir = getRecordingFile();
-        if (recordingDir.exists() && recordingDir.isDirectory()) {
+        if (recordingDir != null && recordingDir.exists() && recordingDir.isDirectory()) {
             return recordingDir.listFiles();
         }
         return null;
@@ -40,13 +40,14 @@ public class RecordFileUtil {
     /**
      * 删除文件
      */
-    public static void deleteRecordingFile(String filePath) {
+    public static boolean deleteRecordingFile(String filePath) {
         if (!TextUtils.isEmpty(filePath)){
             File file = new File(filePath);
             if (file.exists() && file.isFile()){
-                file.delete();
+                return file.delete();
             }
         }
+        return false;
     }
 
 }

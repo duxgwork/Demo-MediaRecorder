@@ -14,7 +14,6 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.List;
 
-import con.me.kevindue.base.AppManager;
 import con.me.kevindue.base.BaseActivity;
 import con.me.kevindue.common.ToastUtil;
 import con.me.kevindue.soundrecorder.R;
