@@ -39,7 +39,7 @@
 //
 //                  佛祖保佑                 永无BUG
 
-package con.me.kevindue.base;
+package con.me.kevindue.common;
 
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
@@ -52,21 +52,19 @@ import java.util.List;
 public class AppManager {
     private static final String TAG = AppManager.class.getSimpleName();
     private static List<AppCompatActivity> mActivities = new LinkedList<AppCompatActivity>();
-    private static AppManager instance = null;
 
     private AppManager() {
 
     }
 
+    private static class SingletonHolder {
+
+        private static final AppManager INSTANCE = new AppManager();
+
+    }
+
     public static AppManager getInstance() {
-        if (null == instance) {
-            synchronized (AppManager.class) {
-                if (null == instance) {
-                    instance = new AppManager();
-                }
-            }
-        }
-        return instance;
+        return SingletonHolder.INSTANCE;
     }
 
     public int size() {

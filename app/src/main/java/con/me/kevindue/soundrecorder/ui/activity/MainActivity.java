@@ -142,7 +142,9 @@ public class MainActivity extends BaseActivity implements IRecordingView,
             mRecorderControl.releaseAudio();
             mRecorderControl = null;
         }
-        mDialogFragment.dismiss();
+        if (mDialogFragment != null){
+            mDialogFragment.dismiss();
+        }
         super.onDestroy();
     }
 
@@ -153,7 +155,7 @@ public class MainActivity extends BaseActivity implements IRecordingView,
                 EXIT_START_TIME = System.currentTimeMillis();
                 ToastUtil.showToast(this, "再按一次离开该应用");
             } else {
-                AppManager.getInstance().clear();
+                finish();
                 return super.onKeyDown(keyCode, event);
             }
             return true;

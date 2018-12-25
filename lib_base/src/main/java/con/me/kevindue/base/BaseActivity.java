@@ -21,8 +21,8 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         if (null != extras) {
             getBundleExtras(extras);
         }
-        //加入管理栈
-        AppManager.getInstance().addActivity(this);
+//        //加入管理栈
+//        AppManager.getInstance().addActivity(this);
         setContentView(getContentViewLayoutID());
         initViewsAndEvents();
         init();
@@ -34,7 +34,7 @@ public abstract class BaseActivity extends AutoLayoutActivity {
 
     @Override
     public void finish() {
-        AppManager.getInstance().removeActivity(this);
+//        AppManager.getInstance().removeActivity(this);
         super.finish();
     }
 

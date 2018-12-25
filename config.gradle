@@ -14,14 +14,15 @@ allprojects {
                 design              : "com.android.support:design:$VERSION_SUPPORT",
                 constraint_layout   : "com.android.support.constraint:constraint-layout:1.1.2",
                 multidex            : "com.android.support:multidex:1.0.2",
-                swipebacklayout    : "cn.bingoogolapple:bga-swipebacklayout:1.1.8"
+                swipebacklayout     : "cn.bingoogolapple:bga-swipebacklayout:1.1.8"
 
         ]
 
         third_depends = [
-                gson                : "com.google.code.gson:gson:2.8.2",
-                permission          : "com.yanzhenjie:permission:1.1.2",
-                material_dialogs    : "com.afollestad.material-dialogs:core:0.9.6.0"
+                gson                  : "com.google.code.gson:gson:2.8.2",
+                permission            : "com.yanzhenjie:permission:1.1.2",
+                material_dialogs      : "com.afollestad.material-dialogs:core:0.9.6.0",
+                customactivityoncrash : "cat.ereza:customactivityoncrash:1.5.0"
         ]
     }
 }

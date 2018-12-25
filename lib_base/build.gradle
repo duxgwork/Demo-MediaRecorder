@@ -30,7 +30,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation anrdoid_depends.appcompat_v7
-    implementation anrdoid_depends.multidex
 
     implementation project(':lib_autolayout')
 }
