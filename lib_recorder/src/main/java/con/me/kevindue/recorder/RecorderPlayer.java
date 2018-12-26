@@ -4,6 +4,7 @@ import android.media.MediaPlayer;
 import android.text.TextUtils;
 
 import java.io.IOException;
+import con.me.kevindue.recorder.listener.OnPlayCompletionListener;
 
 /**
  * 音频播放器
@@ -24,7 +25,7 @@ public class RecorderPlayer {
         return RecorderPlayer.SingletonHolder.INSTANCE;
     }
 
-    public void startPlay(String filePath) {
+    public void startPlay(String filePath, final OnPlayCompletionListener listener) {
         if (TextUtils.isEmpty(filePath)){
             throw new IllegalArgumentException("MediaPlayer file is empty !");
         }
@@ -32,7 +33,20 @@ public class RecorderPlayer {
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setDataSource(filePath);
             mediaPlayer.prepare();
-            mediaPlayer.start();
+            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mediaPlayer.start();
+                }
+            });
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    if (listener != null){
+                        listener.onCompletion(mediaPlayer);
+                    }
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }

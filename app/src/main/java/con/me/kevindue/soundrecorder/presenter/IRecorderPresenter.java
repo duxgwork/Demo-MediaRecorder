@@ -2,6 +2,7 @@ package con.me.kevindue.soundrecorder.presenter;
 
 import java.util.List;
 
+import con.me.kevindue.recorder.listener.OnPlayCompletionListener;
 import con.me.kevindue.soundrecorder.entity.bean.SoundBean;
 
 public interface IRecorderPresenter {
@@ -30,7 +31,7 @@ public interface IRecorderPresenter {
     /**
      * 开始播放录音
      */
-    void  playAudio(String filePath);
+    void  playAudio(String filePath, OnPlayCompletionListener listener);
 
     /**
      * 暂停播放录音

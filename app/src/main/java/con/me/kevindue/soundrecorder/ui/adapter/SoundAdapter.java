@@ -41,27 +41,26 @@ public class SoundAdapter extends RecyclerView.Adapter<SoundAdapter.ViewHolder> 
     }
 
     public void updateItemsIcon(RecorderPresenter recorderControl, int prePosion, int position, SoundBean soundBean){
-        if (this.list != null){
+        if (list != null){
             for (int i=0;i<list.size();i++){
                 if (i == position){
-                    if (recorderControl.isPalying()){
-                        if (prePosion == position){
-                            recorderControl.stopAudio();
-                            this.list.get(i).iconRes = R.drawable.ic_play_start;
-                        } else {
-                            this.list.get(i).iconRes = R.drawable.ic_play_pause;
-                            recorderControl.playAudio(this.list.get(i).path);
-                        }
+                    if (recorderControl.isPalying() && prePosion == position){
+                        list.get(i).iconRes = R.drawable.ic_play_start;
+                        recorderControl.pauseAudio();
                     } else {
-                        this.list.get(i).iconRes = R.drawable.ic_play_pause;
-                        recorderControl.playAudio(this.list.get(i).path);
+                        list.get(i).iconRes = R.drawable.ic_play_pause;
+                        int finalI = i;
+                        recorderControl.playAudio(list.get(i).path, mp -> {
+                            list.get(finalI).iconRes = R.drawable.ic_play_start;
+                            notifyItemChanged(finalI);
+                        });
                     }
                 } else {
-                    this.list.get(i).iconRes = R.drawable.ic_play_start;
+                    list.get(i).iconRes = R.drawable.ic_play_start;
                 }
             }
-            notifyDataSetChanged();
         }
+        notifyDataSetChanged();
     }
 
     public void fillData(List<SoundBean> list){

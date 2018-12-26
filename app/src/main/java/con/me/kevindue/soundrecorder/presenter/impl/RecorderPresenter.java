@@ -7,6 +7,7 @@ import java.util.List;
 import con.me.kevindue.recorder.RecordFileUtil;
 import con.me.kevindue.recorder.Recorder;
 import con.me.kevindue.recorder.RecorderPlayer;
+import con.me.kevindue.recorder.listener.OnPlayCompletionListener;
 import con.me.kevindue.soundrecorder.entity.bean.SoundBean;
 import con.me.kevindue.soundrecorder.presenter.IRecorderPresenter;
 import con.me.kevindue.soundrecorder.ui.viewinterface.IRecordingView;
@@ -58,8 +59,8 @@ public class RecorderPresenter implements IRecorderPresenter {
      * 开始播放录音
      */
     @Override
-    public void playAudio(String filePath) {
-        RecorderPlayer.getInstance().startPlay(filePath);
+    public void playAudio(String filePath, OnPlayCompletionListener listener) {
+        RecorderPlayer.getInstance().startPlay(filePath, listener);
     }
 
     /**
