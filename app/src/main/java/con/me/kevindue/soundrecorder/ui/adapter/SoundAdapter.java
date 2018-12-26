@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import java.util.Collections;
 import java.util.List;
 
 import con.me.kevindue.soundrecorder.R;
@@ -65,6 +65,13 @@ public class SoundAdapter extends RecyclerView.Adapter<SoundAdapter.ViewHolder> 
 
     public void fillData(List<SoundBean> list){
         this.list = list;
+        Collections.sort(this.list, (o1, o2) -> { //逆序排列
+            if (o1.lastModified < o2.lastModified){
+                return 1;
+            } else {
+                return -1;
+            }
+        });
         notifyDataSetChanged();
     }
 

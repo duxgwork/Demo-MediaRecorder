@@ -4,9 +4,10 @@ import android.os.Environment;
 import android.text.TextUtils;
 
 import java.io.File;
+import java.io.FilenameFilter;
 
 public class RecordFileUtil {
-    private static final String RECORD_FILE = File.separator + "huochebang_recording_file" + File.separator;
+    private static final String RECORD_FILE = File.separator + "kevin_recording_file" + File.separator;
     private static final String PREFIX = "record_"; //文件前缀
     private static final String SUFFIX = ".amr"; //文件后缀
 
@@ -32,7 +33,15 @@ public class RecordFileUtil {
     public static File[] getAllRecordingFiles() {
         File recordingDir = getRecordingFile();
         if (recordingDir != null && recordingDir.exists() && recordingDir.isDirectory()) {
-            return recordingDir.listFiles();
+            return recordingDir.listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    if (name.startsWith(PREFIX) && name.endsWith(SUFFIX)) {
+                        return true;
+                    }
+                    return false;
+                }
+            });
         }
         return null;
     }

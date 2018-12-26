@@ -113,7 +113,7 @@ public class RecorderPresenter implements IRecorderPresenter {
         if (files != null && files.length > 0) {
             for (File file : files) {
                 if (!file.isDirectory()) {
-                    recordingList.add(new SoundBean(file.getAbsolutePath(), file.getName()));
+                    recordingList.add(new SoundBean(file.getAbsolutePath(), file.getName(), file.lastModified()));
                 }
             }
         }
